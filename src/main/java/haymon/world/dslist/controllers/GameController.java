@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import haymon.world.dslist.dto.GameDTO;
 import haymon.world.dslist.dto.GameMinDTO;
-import haymon.world.dslist.entities.Game;
 import haymon.world.dslist.services.GameService;
 
 @RestController
@@ -22,8 +21,7 @@ public class GameController {
 	
 	@GetMapping
 	public List<GameMinDTO> getAllGames() {
-		List<Game> games = gameService.findAll();
-		List<GameMinDTO> dto = games.stream().map(x -> new GameMinDTO(x)).toList();
+		List<GameMinDTO> dto = gameService.findAll();
 		return dto;
 	}
 	

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import haymon.world.dslist.dto.GameDTO;
+import haymon.world.dslist.dto.GameMinDTO;
 import haymon.world.dslist.entities.Game;
 import haymon.world.dslist.repositories.GameRepository;
 
@@ -17,8 +18,9 @@ public class GameService {
 	private GameRepository gameRepository;
 	
 	@Transactional
-	public List<Game> findAll() {
-		return gameRepository.findAll();
+	public List<GameMinDTO> findAll() {
+		List<Game> games = gameRepository.findAll();
+		return games.stream().map(GameMinDTO::new).toList();
 	}
 	
 	@Transactional
