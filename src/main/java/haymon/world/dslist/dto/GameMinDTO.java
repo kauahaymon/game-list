@@ -1,6 +1,7 @@
 package haymon.world.dslist.dto;
 
 import haymon.world.dslist.entities.Game;
+import haymon.world.dslist.projections.GameMinProjection;
 
 public class GameMinDTO {
 
@@ -13,12 +14,19 @@ public class GameMinDTO {
 	public GameMinDTO() {}
 	
 	public GameMinDTO(Game entity) {
-		super();
 		id = entity.getId();
 		title = entity.getTitle();
 		year = entity.getYear();
 		imgUrl = entity.getImgUrl();
 		shortDescription = entity.getShortDescription();
+	}
+	
+	public GameMinDTO(GameMinProjection projection) {
+		id = projection.getId();
+		title = projection.getTitle();
+		year = projection.getYear();
+		imgUrl = projection.getImgUrl();
+		shortDescription = projection.getShortDescription();
 	}
 
 	public Long getId() {
