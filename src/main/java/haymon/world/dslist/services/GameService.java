@@ -10,7 +10,6 @@ import haymon.world.dslist.dto.GameDTO;
 import haymon.world.dslist.dto.GameMinDTO;
 import haymon.world.dslist.entities.Game;
 import haymon.world.dslist.projections.GameMinProjection;
-import haymon.world.dslist.repositories.GameListRepository;
 import haymon.world.dslist.repositories.GameRepository;
 
 @Service
@@ -18,9 +17,6 @@ public class GameService {
 	
 	@Autowired
 	private GameRepository gameRepository;
-	
-	@Autowired
-	private GameListRepository gameListRepository;
 	
 	@Transactional(readOnly = true)
 	public List<GameMinDTO> findAll() {
@@ -37,7 +33,7 @@ public class GameService {
 	
 	@Transactional(readOnly = true)
 	public List<GameMinDTO> findByList(Long listId) {
-		List<GameMinProjection> games = gameListRepository.searhByList(listId);
+		List<GameMinProjection> games = gameRepository.searhByList(listId);
 		return games.stream().map(x -> new GameMinDTO(x)).toList();
 	}
 }
